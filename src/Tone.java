@@ -14,7 +14,7 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.SourceDataLine;
 
-//I had tutoring from Nate Williams with this code
+//I had tutoring from Nate Williams with this code and help with the music
 public class Tone {
 
 	public static final AudioFormat af = new AudioFormat(Note1.SAMPLE_RATE, 8, 1, true, false);
@@ -103,7 +103,7 @@ public class Tone {
 					if (bn != null) {
 						music.add(bn);
 					} else {
-						System.err.println("Error: Invalid move '" + line + "'");
+						System.err.println("Error: Invalid BellNote '" + line + "'");
 					}
 				}
 			} catch (IOException ignored) {
