@@ -1,4 +1,4 @@
-
+//enum of notes that acceptable for this program
 public enum Note1 {
 	REST, A4, A4S, B4, C4, C4S, D4, D4S, E4, F4, F4S, G4, G4S, A5;
 
@@ -13,6 +13,7 @@ public enum Note1 {
 
 	private final byte[] sinSample = new byte[MEASURE_LENGTH_SEC * SAMPLE_RATE];
 
+	// constructor for Note1
 	private Note1() {
 		int n = this.ordinal();
 		if (n > 0) {
@@ -29,6 +30,7 @@ public enum Note1 {
 		}
 	}
 
+	// method for a public byte sample
 	public byte[] sample() {
 		return sinSample;
 	}

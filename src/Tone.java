@@ -14,14 +14,17 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.SourceDataLine;
 
+//I had tutoring from Nate Williams with this code
 public class Tone {
 
 	public static final AudioFormat af = new AudioFormat(Note1.SAMPLE_RATE, 8, 1, true, false);
 
+	// constructor for Tone
 	public Tone(AudioFormat af2) {
 
 	}
 
+	// main method
 	public static void main(String[] args) throws Exception {
 		List<BellNote> music = null;
 		if (args.length == 0) {
@@ -40,7 +43,8 @@ public class Tone {
 
 	}
 
-	// method that will play the song(but needs the method playNote as well)
+	// method that will open the file and start the song(but needs the method
+	// playNote as well)
 	void playSong(List<BellNote> song) throws LineUnavailableException {
 		try (final SourceDataLine line = AudioSystem.getSourceDataLine(af)) {
 			line.open();
@@ -53,7 +57,7 @@ public class Tone {
 		}
 	}
 
-	// method that plays the BellBote
+	// method that plays the BellBote as well as controls the speed
 	private void playNote(SourceDataLine line, BellNote bn) {
 		final int ms = Math.min(bn.length.timeMs(), Note1.MEASURE_LENGTH_SEC * 1000);
 		final int length = Note1.SAMPLE_RATE * ms / 1000;
@@ -61,7 +65,8 @@ public class Tone {
 		line.write(Note1.REST.sample(), 0, 50);
 	}
 
-	// method to validateData the Notes
+	// method to validateData the Notes if they are invalid then they will get a
+	// message that the note or the length is invalid
 	private static boolean validateData(List<BellNote> music) {
 		boolean success = true;
 
@@ -85,7 +90,8 @@ public class Tone {
 		return success;
 	}
 
-	// a list for BellNotes and to load the music
+	// an array of music it will try the file reader and the buffer reader if it
+	// can play it will
 	private static List<BellNote> loadMusic(String filename) {
 		final List<BellNote> music = new ArrayList<>();
 		final File file = new File(filename);
@@ -107,7 +113,6 @@ public class Tone {
 		}
 		return music;
 
-		// return null;
 	}
 
 	// BellNote parse Note is what I call when I check fields 0 and 1
@@ -119,7 +124,8 @@ public class Tone {
 		return null;
 	}
 
-	// method to parse the NoteLength//switch for the NoteLength
+	// method to parse the NoteLength//switch for the NoteLength/these are the
+	// acceptable note lengths/ if invalid return null
 	private static NoteLength parseNoteLength(String noteLength) {
 		if (noteLength == null) {
 			return null;
@@ -150,7 +156,7 @@ public class Tone {
 			return null;
 		}
 		// switch statement for the notes, and changes them to UpperCase if they
-		// are not already
+		// are not already/ return null if invalid
 		switch (symbol.toUpperCase().trim()) {
 		case "A5":
 			return Note1.A5;
@@ -197,16 +203,5 @@ public class Tone {
 	}
 
 	String filename = "MaryLamb.txt";
-
-	/*
-	 * ArrayList<String> arr = new ArrayList<String>(); try( BufferedReader br =
-	 * new BufferedReader(new FileReader(filename))) { String currentLine;
-	 * While((currentLine = br.readLine()) != null); { arr.add(currentLine); }
-	 * }catch( IOException e) { System.out.println("can't find the file"); }
-	 * private void While(boolean b) {
-	 * 
-	 * 
-	 * }
-	 */
 
 }
