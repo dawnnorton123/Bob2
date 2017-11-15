@@ -7,8 +7,7 @@
 		<mkdir dir="${dist}/classes" />
 	</target>
 	<target name="compile" depends="init">
-		<javac includeantruntime="false" srcdir="${src}" debug="true"
-			destdir="${dist}/classes" />
+		<javac includeantruntime="false" srcdir="${src}" debug="true" destdir="${dist}/classes" />
 	</target>
 	<target name="jar" depends="init,compile">
 		<jar destfile="${dist}/${ant.project.name}.jar" basedir="${dist}/classes">
